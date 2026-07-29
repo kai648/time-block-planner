@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<!-- saved from url=(0060)file:///C:/Users/LOQ/Downloads/time-block-planner%20(6).html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="en">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Time-Block Planner</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAAByklEQVR42u3dzQqCQBSAURVDMHAhtPY1fP/XCVwELcKNW/tBMEa55Tm7WtRFPmZwM5PXXZ/BtwqPAAEhIH5TOf9wOrdpf71qLu9fPm7X+M/F5AvG+2AFwhaGgBAQAgIBISAEhIBAQAgIASEgEBACQkAICASEgBAQAgIBISAEhIAQEAgIASEgBAQCQkAE9nTA1MeziZLb519Mvt3kDpjCFoaAEBACAgER4jU++TnITlv++8mtQAgIASEgBAQCQkAICAGBgBAQAkJAICAEhIAQEAgIASEgBISAQEAICAEhIBAQAkJACAgEhIAQEAICASEgBISAEBAICAEhIAQEAkJACAgBgYDYjnvjTb6ae+OxhSEgBISAQECEeI13b7zJrUDYwhAQAgIBISAEhIBAQAgIASEgEBACQkAICAGBgBAQAkJAICAEhIAQEAgIASEgBAQCQkAICAEhIBAQAkJACAgEhIAQEAICASEgBISA4JVbm02+mlubsYUhIASEgEBAhHiNd2uzya1A2MIQEAICASEgBISAQEAICAEhIBAQAkJACAgBgYAQEAJCQCAgBISAEBAICAEhIAQEAkJACAgBcXB53fWeAlYgBISAOJoJOFU8Y2fbWRMAAAAASUVORK5CYII=">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAAByklEQVR42u3dzQqCQBSAURVDMHAhtPY1fP/XCVwELcKNW/tBMEa55Tm7WtRFPmZwM5PXXZ/BtwqPAAEhIH5TOf9wOrdpf71qLu9fPm7X+M/F5AvG+2AFwhaGgBAQAgIBISAEhIBAQAgIASEgEBACQkAICASEgBAQAgIBISAEhIAQEAgIASEgBAQCQkAE9nTA1MeziZLb519Mvt3kDpjCFoaAEBACAgER4jU++TnITlv++8mtQAgIASEgBAQCQkAICAGBgBAQAkJAICAEhIAQEAgIASEgBISAQEAICAEhIBAQAkJACAgEhIAQEAICASEgBISAEBAICAEhIAQEAkJACAgBgYDYjnvjTb6ae+OxhSEgBISAQECEeI13b7zJrUDYwhAQAgIBISAEhIBAQAgIASEgEBACQkAICAGBgBAQAkJAICAEhIAQEAgIASEgBAQCQkAICAEhIBAQAkJACAgEhIAQEAICASEgBISA4JVbm02+mlubsYUhIASEgEBAhHiNd2uzya1A2MIQEAICASEgBISAQEAICAEhIBAQAkJACAgBgYAQEAJCQCAgBISAEBAICAEhIAQEAkJACAgBcXB53fWeAlYgBISAOJoJOFU8Y2fbWRMAAAAASUVORK5CYII=">
 <meta name="theme-color" content="#403d35">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Time-Block">
-<script src="./Time-Block Planner_files/firebase-app-compat.js.download"></script>
-<script src="./Time-Block Planner_files/firebase-firestore-compat.js.download"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 <style>
   :root{
     --paper:#f5f2ea;
@@ -325,7 +327,7 @@
   <div class="spacer"></div>
   <div class="navgrp">
     <button class="tbtn" id="prevBtn" title="Previous day">‹</button>
-    <button class="tbtn on" id="todayBtn">TODAY</button>
+    <button class="tbtn" id="todayBtn">TODAY</button>
     <button class="tbtn" id="nextBtn" title="Next day">›</button>
     <button class="tbtn" id="jumpBtn" title="Pick a date">📅</button>
     <input type="date" id="datePick">
@@ -342,8 +344,8 @@
 <main class="spread" id="dailyView">
   <section class="page left">
     <div class="page-head">
-      <div class="dow" id="dowLabel">WEDNESDAY</div>
-      <div class="fulldate" id="dateLabel">29 JULY 2026</div>
+      <div class="dow" id="dowLabel">MONDAY</div>
+      <div class="fulldate" id="dateLabel">—</div>
       <div class="flex"></div>
       <div class="headtag">PLAN → REVISE</div>
     </div>
@@ -351,15 +353,15 @@
     <div class="colhead"><span>plan</span><span>rev 2</span><span>rev 3</span><span>rev 4</span></div>
 
     <div class="grid-wrap">
-      <div class="hourcol" id="hourCol" style="height: 832px;"><div class="hlabel" style="top: 0px;">06</div><div class="hlabel" style="top: 52px;">07</div><div class="hlabel" style="top: 104px;">08</div><div class="hlabel" style="top: 156px;">09</div><div class="hlabel" style="top: 208px;">10</div><div class="hlabel" style="top: 260px;">11</div><div class="hlabel" style="top: 312px;">12</div><div class="hlabel" style="top: 364px;">13</div><div class="hlabel" style="top: 416px;">14</div><div class="hlabel" style="top: 468px;">15</div><div class="hlabel" style="top: 520px;">16</div><div class="hlabel" style="top: 572px;">17</div><div class="hlabel" style="top: 624px;">18</div><div class="hlabel" style="top: 676px;">19</div><div class="hlabel" style="top: 728px;">20</div><div class="hlabel" style="top: 780px;">21</div><div class="hlabel" style="top: 832px;">22</div></div>
-      <div class="cols" id="cols" style="height: 832px;"><div class="col" data-ci="0"><div class="colnum">1</div><div class="block" data-id="3864426" style="top: 104px; height: 25px;"><span class="lbl" contenteditable="true" spellcheck="false">email veeramohan@upm.edu.my for MGM3180 meeting method and groupchat infos,&nbsp;message SOL wellness when is the start of therapy date</span><button class="bdel" aria-label="Delete block">×</button><button class="bink" title="Change ink"></button><div class="grip"></div></div><div class="block" data-id="3864435" style="top: 130px; height: 207px;"><span class="lbl" contenteditable="true" spellcheck="false">pentesting bootcamps comptia, ceh, other recognized certificates</span><button class="bdel" aria-label="Delete block">×</button><button class="bink" title="Change ink"></button><div class="grip"></div></div><div class="block" data-id="3864437" style="top: 338px; height: 25px;"><span class="lbl" contenteditable="true" spellcheck="false">order breakfast, lunch, dinner grabfood ask soma, sleep 20 minutes, gym 5 minutes, communication skills</span><button class="bdel" aria-label="Delete block">×</button><button class="bink" title="Change ink"></button><div class="grip"></div></div><div class="block" data-id="3864428" style="top: 416px; height: 155px;"><span class="lbl" contenteditable="true" spellcheck="false">MGM3180 2-5PM</span><button class="bdel" aria-label="Delete block">×</button><button class="bink" title="Change ink"></button><div class="grip"></div></div><div class="block" data-id="3864431" style="top: 624px; height: 51px;"><span class="lbl" contenteditable="true" spellcheck="false">study block MGM3180</span><button class="bdel" aria-label="Delete block">×</button><button class="bink" title="Change ink"></button><div class="grip"></div></div><div class="block" data-id="3864448" style="top: 676px; height: 51px;"><span class="lbl" contenteditable="true" spellcheck="false">check about turkish schedule what to do on thursday</span><button class="bdel" aria-label="Delete block">×</button><button class="bink" title="Change ink"></button><div class="grip"></div></div></div><div class="col" data-ci="1"><div class="colnum">2</div><div class="block" data-id="3864456" style="top: 390px; height: 25px;"><span class="lbl" contenteditable="true" spellcheck="false">check MGM3180 putrablast</span><button class="bdel" aria-label="Delete block">×</button><button class="bink" title="Change ink"></button><div class="grip"></div></div></div><div class="col" data-ci="2"><div class="colnum">3</div></div><div class="col" data-ci="3"><div class="colnum">4</div></div><div class="nowline" id="nowLine" style="top: 559.867px;"></div><div class="gridhint hidden" id="gridHint">TAP A COLUMN TO DROP A BLOCK · DRAG ITS LOWER EDGE TO SIZE IT</div></div>
+      <div class="hourcol" id="hourCol"></div>
+      <div class="cols" id="cols"></div>
     </div>
 
     <div class="grid-foot">
       <label>day
-        <select id="startSel"><option value="4">04:00</option><option value="5">05:00</option><option value="6">06:00</option><option value="7">07:00</option><option value="8">08:00</option><option value="9">09:00</option><option value="10">10:00</option><option value="11">11:00</option><option value="12">12:00</option></select>–<select id="endSel"><option value="14">14:00</option><option value="15">15:00</option><option value="16">16:00</option><option value="17">17:00</option><option value="18">18:00</option><option value="19">19:00</option><option value="20">20:00</option><option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option><option value="24">24:00</option></select>
+        <select id="startSel"></select>–<select id="endSel"></select>
       </label>
-      <span class="modetag ok" id="storeMode">✓ synced everywhere · code set</span>
+      <span class="modetag" id="storeMode"></span>
       <div class="spacer"></div>
       <button class="linkish" id="exportBtn" title="Download all your planner data as a backup file">backup ⤓</button>
       <button class="linkish" id="importBtn" title="Load a backup file from another device">restore ⤒</button>
@@ -385,15 +387,15 @@
     <div class="capture">
       <div class="capcol">
         <div class="sect">TASKS</div>
-        <ul class="caplist" id="taskList"><li><button class="chk" aria-label="Toggle done"></button><span class="itxt" contenteditable="true" spellcheck="false">have a haircut</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow">→</button><button class="idel" aria-label="Delete">×</button></li><li><button class="chk" aria-label="Toggle done"></button><span class="itxt" contenteditable="true" spellcheck="false">study and implement simulate how to be a straight A student</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow">→</button><button class="idel" aria-label="Delete">×</button></li><li><button class="chk" aria-label="Toggle done"></button><span class="itxt" contenteditable="true" spellcheck="false">reading list of how to be an academic prowess simulate it with AI too scenarios</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow">→</button><button class="idel" aria-label="Delete">×</button></li><li class="done"><button class="chk" aria-label="Toggle done"></button><span class="itxt" contenteditable="true" spellcheck="false">communication skill its ok everyone learn it too</span><button class="idel" aria-label="Delete">×</button></li><li class="done"><button class="chk" aria-label="Toggle done"></button><span class="itxt" contenteditable="true" spellcheck="false">gym 5 minutes</span><button class="idel" aria-label="Delete">×</button></li><li><button class="chk" aria-label="Toggle done"></button><span class="itxt" contenteditable="true" spellcheck="false">AI skills</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow">→</button><button class="idel" aria-label="Delete">×</button></li><li><button class="chk" aria-label="Toggle done"></button><span class="itxt" contenteditable="true" spellcheck="false">read more books about my stuff</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow">→</button><button class="idel" aria-label="Delete">×</button></li><li><button class="chk" aria-label="Toggle done"></button><span class="itxt" contenteditable="true" spellcheck="false">headache hours</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow">→</button><button class="idel" aria-label="Delete">×</button></li><li><button class="chk" aria-label="Toggle done"></button><span class="itxt" contenteditable="true" spellcheck="false">check whatsapp at 11am</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow">→</button><button class="idel" aria-label="Delete">×</button></li><li class="done"><button class="chk" aria-label="Toggle done"></button><span class="itxt" contenteditable="true" spellcheck="false">check whatsapp at 3pm</span><button class="idel" aria-label="Delete">×</button></li><li><button class="chk" aria-label="Toggle done"></button><span class="itxt" contenteditable="true" spellcheck="false">meditate at any time</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow">→</button><button class="idel" aria-label="Delete">×</button></li><li class="done"><button class="chk" aria-label="Toggle done"></button><span class="itxt" contenteditable="true" spellcheck="false">journal 15 minutes</span><button class="idel" aria-label="Delete">×</button></li><li class="done"><button class="chk" aria-label="Toggle done"></button><span class="itxt" contenteditable="true" spellcheck="false">think about your future</span><button class="idel" aria-label="Delete">×</button></li><li class="done"><button class="chk" aria-label="Toggle done"></button><span class="itxt" contenteditable="true" spellcheck="false">pentesting bootcamps comptia, ceh, other recognized certificates</span><button class="idel" aria-label="Delete">×</button></li><li class="done"><button class="chk" aria-label="Toggle done"></button><span class="itxt" contenteditable="true" spellcheck="false">order breakfast, lunch, dinner grabfood ask soma</span><button class="idel" aria-label="Delete">×</button></li><li><button class="chk" aria-label="Toggle done"></button><span class="itxt" contenteditable="true" spellcheck="false">skincare</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow">→</button><button class="idel" aria-label="Delete">×</button></li><li><button class="chk" aria-label="Toggle done"></button><span class="itxt" contenteditable="true" spellcheck="false">shopping</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow">→</button><button class="idel" aria-label="Delete">×</button></li><li><button class="chk" aria-label="Toggle done"></button><span class="itxt" contenteditable="true" spellcheck="false">breakfast</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow">→</button><button class="idel" aria-label="Delete">×</button></li><li><button class="chk" aria-label="Toggle done"></button><span class="itxt" contenteditable="true" spellcheck="false">buy headphone</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow">→</button><button class="idel" aria-label="Delete">×</button></li><li class="done"><button class="chk" aria-label="Toggle done"></button><span class="itxt" contenteditable="true" spellcheck="false">check about turkish schedule what to do on thursday</span><button class="idel" aria-label="Delete">×</button></li><li><button class="chk" aria-label="Toggle done"></button><span class="itxt" contenteditable="true" spellcheck="false">my charisma</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow">→</button><button class="idel" aria-label="Delete">×</button></li><li class="done"><button class="chk" aria-label="Toggle done"></button><span class="itxt" contenteditable="true" spellcheck="false">email veeramohan@upm.edu.my for MGM3180 meeting method and groupchat infos</span><button class="idel" aria-label="Delete">×</button></li><li class="done"><button class="chk" aria-label="Toggle done"></button><span class="itxt" contenteditable="true" spellcheck="false">MGM3180 2-5pm</span><button class="idel" aria-label="Delete">×</button></li><li class="done"><button class="chk" aria-label="Toggle done"></button><span class="itxt" contenteditable="true" spellcheck="false">study block MGM3180</span><button class="idel" aria-label="Delete">×</button></li><li class="done"><button class="chk" aria-label="Toggle done"></button><span class="itxt" contenteditable="true" spellcheck="false">message SOL wellness when is the start of therapy date</span><button class="idel" aria-label="Delete">×</button></li></ul>
+        <ul class="caplist" id="taskList"></ul>
         <div class="addrow"><input id="taskAdd" placeholder="+ task, press enter" autocomplete="off"></div>
-        <button class="linkish carry" id="carryBtn">unfinished → tomorrow</button>
+        <button class="linkish carry hidden" id="carryBtn">unfinished → tomorrow</button>
       </div>
       <div class="capcol">
         <div class="sect">IDEAS</div>
-        <ul class="caplist" id="ideaList"><li><span class="dash">–</span><span class="itxt" contenteditable="true" spellcheck="false">check again when doctor's appointment is (go to PKU first!)</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow">→</button><button class="idel" aria-label="Delete">×</button></li><li><span class="dash">–</span><span class="itxt" contenteditable="true" spellcheck="false">mom and sister will come check when will they come</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow">→</button><button class="idel" aria-label="Delete">×</button></li><li><span class="dash">–</span><span class="itxt" contenteditable="true" spellcheck="false">i want to continue learn python</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow">→</button><button class="idel" aria-label="Delete">×</button></li><li><span class="dash">–</span><span class="itxt" contenteditable="true" spellcheck="false">i want to learn java</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow">→</button><button class="idel" aria-label="Delete">×</button></li><li><span class="dash">–</span><span class="itxt" contenteditable="true" spellcheck="false">i want to practice american english for ielts too</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow">→</button><button class="idel" aria-label="Delete">×</button></li><li><span class="dash">–</span><span class="itxt" contenteditable="true" spellcheck="false">i want to learn to be a ceo</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow">→</button><button class="idel" aria-label="Delete">×</button></li><li><span class="dash">–</span><span class="itxt" contenteditable="true" spellcheck="false">i want to be medea</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow">→</button><button class="idel" aria-label="Delete">×</button></li></ul>
+        <ul class="caplist" id="ideaList"></ul>
         <div class="addrow"><input id="ideaAdd" placeholder="+ idea, press enter" autocomplete="off"></div>
-        <button class="linkish carry" id="carryIdeasBtn">all → tomorrow</button>
+        <button class="linkish carry hidden" id="carryIdeasBtn">all → tomorrow</button>
       </div>
     </div>
 
@@ -413,7 +415,7 @@
   <section class="page single">
     <div class="page-head">
       <div class="dow">WEEKLY PLAN</div>
-      <div class="fulldate" id="weekLabel">27 JUL – 2 AUG · 2026-W31</div>
+      <div class="fulldate" id="weekLabel">—</div>
       <div class="flex"></div>
       <div class="headtag">THINK BEFORE YOU BLOCK</div>
     </div>
@@ -970,6 +972,5 @@ sGet('tbp:prefs').then(function(p){
 });
 })();
 </script>
-
-
-</body></html>
+</body>
+</html>
