@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<!-- saved from url=(0044)https://kai648.github.io/time-block-planner/ -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="en">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Time-Block Planner</title>
 <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAADx0lEQVR42u3csWtTURTH8WvJ3tXBTecKgtDJoS6FSqZmFVzaUiwEStcOriIIWWwR6+JUp1DBJQ5Ougg6262Dq/+BQ6TGvJf33k2epnn3811sHGJy/facc9tfzrXB2asA5LHkCDCJ1vCP1XsPnAUu+fTxTOWAtgJygBwgB8gBcoAcIAfIAXIAebRmf4qV23ec42Lx7esXlQPaCsgBcoAcWOjbSmezc/n16dtTh6Vy5JiRfYh05chVgR/kGO8mow2FHyrH+Jxh4DCQTsnj7YchhK3drtNMqHJcNhHdhBw5t9bOZseFVlsZ9yNbLYrNGH5GCgtBxQ84LpVOo2qGylHuRy0yoiEDKcgBkAPkADlADpAD5AA50AhatTzLzX5/0O8Pv77//oNjVTn+mDH6cLC+5libXzmq/LI+V4XB+pr60WQ5sunzrB8FRUL9uPqUfgNLnyNGDulzlM8co+nzKbQwdiR9Wyn472dGw+Wokj7PlYAZjZUjNn1+3m4zI6GZIzZ9ft5u+1BTQm1F+hy1pc/htgJyAOQAOUAOkAPkwJxp1fVE2f0ce0c/0znH3vbyAr3aWfdzAK1/KOPRm7G/ePfiUfNOcGPnJDR0PYnKgakqh1VxbivlZgTpUXIUq8APckifo8JAavc5OYB4Oew+J8fEbhLsPidHsR/MIEeJCsxIEOlzuK2g3soRxY+L7ymf42K9/es3bv1XOfL+vc/pyFHxuLUVkAPkADkAcoAcIAfIgXkgfY74yiF9DulzxMghfY7ygVT6nBzAVLeVYc2o0k2y+zmSouDtb+0djj5cvbsy91d7/PL1lJVD+hxFlSN293motp+jwRTu5/ircjx99nyOr/Ngv1vDzCF9DulzuK2AHCAHyAFygBwgB8gBcoAcADlQndrS5/ZzJCRHNn1e7If9HKm0FelzBOlzTDmQSp+TA4iXw+5zckzsJkH6nBzFfjCDHCUqMCNBpM/htgJygBwgB67sQFo7GzsnTjxFOeznIEcEve1l33zkCKFkQUXiHBpI4bYCcgB2nyO+cth9DulzxMghfY7ygVT6nBxAvBzS5+SY2E2C9Dk5iv1gBjlKVGBGgtSWPk98P0dyckTRyAUV2gpADpAD5AA5QA6QA+QAOUAOJIr0OeIrh/Q5pM8R01ay3WQ0L6i/zMjBfrcJM8do+ry0bCS+nyO5gRS1cNx70szbylhbKcB+jiQGUulzFN1WpM8RpM8x620FKgdADpAD5MA8BtKKbO12naPKAXIA5AA5QA6QA+QAOUAOkAON4vePz2XHoXIggl/qGW8ejXhdOQAAAABJRU5ErkJggg==">
@@ -10,6 +10,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Time-Block">
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 <style>
   :root{
     --paper:#f5f2ea;
@@ -324,16 +326,17 @@
   <div class="brand">TIME-BLOCK PLANNER<small>a daily method for deep work</small></div>
   <div class="spacer"></div>
   <div class="navgrp">
-    <button class="tbtn" id="prevBtn" title="Previous day" fdprocessedid="ucrq2p">‹</button>
-    <button class="tbtn on" id="todayBtn" fdprocessedid="6nc5t">TODAY</button>
-    <button class="tbtn" id="nextBtn" title="Next day" fdprocessedid="x0ucn8">›</button>
-    <button class="tbtn" id="jumpBtn" title="Pick a date" fdprocessedid="z3mynn">📅</button>
+    <button class="tbtn" id="prevBtn" title="Previous day">‹</button>
+    <button class="tbtn" id="todayBtn">TODAY</button>
+    <button class="tbtn" id="nextBtn" title="Next day">›</button>
+    <button class="tbtn" id="jumpBtn" title="Pick a date">📅</button>
     <input type="date" id="datePick">
   </div>
   <div class="navgrp">
-    <button class="tbtn on" id="tabDaily" fdprocessedid="7uinm">DAILY</button>
-    <button class="tbtn" id="tabWeekly" fdprocessedid="2g4mpc">WEEKLY</button>
-    <button class="tbtn" id="howBtn" title="How the method works" fdprocessedid="i9n1q">?</button>
+    <button class="tbtn on" id="tabDaily">DAILY</button>
+    <button class="tbtn" id="tabWeekly">WEEKLY</button>
+    <button class="tbtn" id="syncBtn" title="Set or view your sync code">SYNC</button>
+    <button class="tbtn" id="howBtn" title="How the method works">?</button>
   </div>
 </header>
 
@@ -341,8 +344,8 @@
 <main class="spread" id="dailyView">
   <section class="page left">
     <div class="page-head">
-      <div class="dow" id="dowLabel">WEDNESDAY</div>
-      <div class="fulldate" id="dateLabel">29 JULY 2026</div>
+      <div class="dow" id="dowLabel">MONDAY</div>
+      <div class="fulldate" id="dateLabel">—</div>
       <div class="flex"></div>
       <div class="headtag">PLAN → REVISE</div>
     </div>
@@ -350,19 +353,19 @@
     <div class="colhead"><span>plan</span><span>rev 2</span><span>rev 3</span><span>rev 4</span></div>
 
     <div class="grid-wrap">
-      <div class="hourcol" id="hourCol" style="height: 832px;"><div class="hlabel" style="top: 0px;">06</div><div class="hlabel" style="top: 52px;">07</div><div class="hlabel" style="top: 104px;">08</div><div class="hlabel" style="top: 156px;">09</div><div class="hlabel" style="top: 208px;">10</div><div class="hlabel" style="top: 260px;">11</div><div class="hlabel" style="top: 312px;">12</div><div class="hlabel" style="top: 364px;">13</div><div class="hlabel" style="top: 416px;">14</div><div class="hlabel" style="top: 468px;">15</div><div class="hlabel" style="top: 520px;">16</div><div class="hlabel" style="top: 572px;">17</div><div class="hlabel" style="top: 624px;">18</div><div class="hlabel" style="top: 676px;">19</div><div class="hlabel" style="top: 728px;">20</div><div class="hlabel" style="top: 780px;">21</div><div class="hlabel" style="top: 832px;">22</div></div>
-      <div class="cols" id="cols" style="height: 832px;"><div class="col" data-ci="0"><div class="colnum">1</div><div class="block" data-id="3864426" style="top: 104px; height: 25px;"><span class="lbl" contenteditable="true" spellcheck="false">email veeramohan@upm.edu.my for MGM3180 meeting method and groupchat infos,&nbsp;message SOL wellness when is the start of therapy date</span><button class="bdel" aria-label="Delete block" fdprocessedid="luoc8">×</button><button class="bink" title="Change ink" fdprocessedid="0av4iw"></button><div class="grip"></div></div><div class="block" data-id="3864435" style="top: 130px; height: 207px;"><span class="lbl" contenteditable="true" spellcheck="false">pentesting bootcamps comptia, ceh, other recognized certificates</span><button class="bdel" aria-label="Delete block" fdprocessedid="r04eaj">×</button><button class="bink" title="Change ink" fdprocessedid="mlktf"></button><div class="grip"></div></div><div class="block" data-id="3864437" style="top: 338px; height: 25px;"><span class="lbl" contenteditable="true" spellcheck="false">order breakfast, lunch, dinner grabfood ask soma, sleep 20 minutes, gym 5 minutes, communication skills</span><button class="bdel" aria-label="Delete block" fdprocessedid="lomudf">×</button><button class="bink" title="Change ink" fdprocessedid="78cu6"></button><div class="grip"></div></div><div class="block" data-id="3864428" style="top: 416px; height: 155px;"><span class="lbl" contenteditable="true" spellcheck="false">MGM3180 2-5PM</span><button class="bdel" aria-label="Delete block" fdprocessedid="d8if9s">×</button><button class="bink" title="Change ink" fdprocessedid="up4ru"></button><div class="grip"></div></div><div class="block" data-id="3864431" style="top: 624px; height: 51px;"><span class="lbl" contenteditable="true" spellcheck="false">study block MGM3180</span><button class="bdel" aria-label="Delete block" fdprocessedid="9xzyts">×</button><button class="bink" title="Change ink" fdprocessedid="m6ouv"></button><div class="grip"></div></div><div class="block" data-id="3864448" style="top: 676px; height: 51px;"><span class="lbl" contenteditable="true" spellcheck="false">check about turkish schedule what to do on thursday</span><button class="bdel" aria-label="Delete block" fdprocessedid="jy3ud">×</button><button class="bink" title="Change ink" fdprocessedid="jwyimj"></button><div class="grip"></div></div></div><div class="col" data-ci="1"><div class="colnum">2</div><div class="block" data-id="3864456" style="top: 390px; height: 25px;"><span class="lbl" contenteditable="true" spellcheck="false">check MGM3180 putrablast</span><button class="bdel" aria-label="Delete block" fdprocessedid="2sh1op">×</button><button class="bink" title="Change ink" fdprocessedid="7ppjmo"></button><div class="grip"></div></div></div><div class="col" data-ci="2"><div class="colnum">3</div></div><div class="col" data-ci="3"><div class="colnum">4</div></div><div class="nowline" id="nowLine" style="top: 449.8px;"></div><div class="gridhint hidden" id="gridHint">TAP A COLUMN TO DROP A BLOCK · DRAG ITS LOWER EDGE TO SIZE IT</div></div>
+      <div class="hourcol" id="hourCol"></div>
+      <div class="cols" id="cols"></div>
     </div>
 
     <div class="grid-foot">
       <label>day
-        <select id="startSel" fdprocessedid="9mgywi"><option value="4">04:00</option><option value="5">05:00</option><option value="6">06:00</option><option value="7">07:00</option><option value="8">08:00</option><option value="9">09:00</option><option value="10">10:00</option><option value="11">11:00</option><option value="12">12:00</option></select>–<select id="endSel" fdprocessedid="6z48xv"><option value="14">14:00</option><option value="15">15:00</option><option value="16">16:00</option><option value="17">17:00</option><option value="18">18:00</option><option value="19">19:00</option><option value="20">20:00</option><option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option><option value="24">24:00</option></select>
+        <select id="startSel"></select>–<select id="endSel"></select>
       </label>
-      <span class="modetag" id="storeMode">saved on this device only</span>
+      <span class="modetag" id="storeMode"></span>
       <div class="spacer"></div>
-      <button class="linkish" id="exportBtn" title="Download all your planner data as a backup file" fdprocessedid="9grxe2">backup ⤓</button>
-      <button class="linkish" id="importBtn" title="Load a backup file from another device" fdprocessedid="zlqipl">restore ⤒</button>
-      <button class="linkish" id="clearBtn" fdprocessedid="so7hpj">clear day</button>
+      <button class="linkish" id="exportBtn" title="Download all your planner data as a backup file">backup ⤓</button>
+      <button class="linkish" id="importBtn" title="Load a backup file from another device">restore ⤒</button>
+      <button class="linkish" id="clearBtn">clear day</button>
       <input type="file" id="importFile" accept="application/json,.json">
     </div>
   </section>
@@ -378,26 +381,26 @@
 
     <div class="metrics">
       <div class="sect">DAILY METRICS</div>
-      <input id="metricsInput" placeholder="e.g. deep work ▮▮▮ · gym ✓ · prayers 5/5 · kaggle ✓" autocomplete="off" fdprocessedid="nvr5fm">
+      <input id="metricsInput" placeholder="e.g. deep work ▮▮▮ · gym ✓ · prayers 5/5 · kaggle ✓" autocomplete="off">
     </div>
 
     <div class="capture">
       <div class="capcol">
         <div class="sect">TASKS</div>
-        <ul class="caplist" id="taskList"><li><button class="chk" aria-label="Toggle done" fdprocessedid="9b4ts"></button><span class="itxt" contenteditable="true" spellcheck="false">have a haircut</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow" fdprocessedid="bfqg0n">→</button><button class="idel" aria-label="Delete" fdprocessedid="y1fbre">×</button></li><li><button class="chk" aria-label="Toggle done" fdprocessedid="8zfkz"></button><span class="itxt" contenteditable="true" spellcheck="false">study and implement simulate how to be a straight A student</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow" fdprocessedid="8mham">→</button><button class="idel" aria-label="Delete" fdprocessedid="b2d08">×</button></li><li><button class="chk" aria-label="Toggle done" fdprocessedid="vajgpp"></button><span class="itxt" contenteditable="true" spellcheck="false">reading list of how to be an academic prowess simulate it with AI too scenarios</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow" fdprocessedid="0ndc6rj">→</button><button class="idel" aria-label="Delete" fdprocessedid="ju5t3b">×</button></li><li><button class="chk" aria-label="Toggle done" fdprocessedid="j329od"></button><span class="itxt" contenteditable="true" spellcheck="false">communication skill its ok everyone learn it too</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow" fdprocessedid="18rao">→</button><button class="idel" aria-label="Delete" fdprocessedid="1avguc">×</button></li><li class="done"><button class="chk" aria-label="Toggle done" fdprocessedid="hqtumh"></button><span class="itxt" contenteditable="true" spellcheck="false">gym 5 minutes</span><button class="idel" aria-label="Delete" fdprocessedid="5pivbb">×</button></li><li><button class="chk" aria-label="Toggle done" fdprocessedid="roadpo"></button><span class="itxt" contenteditable="true" spellcheck="false">AI skills</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow" fdprocessedid="mo0trb">→</button><button class="idel" aria-label="Delete" fdprocessedid="g7zyq">×</button></li><li><button class="chk" aria-label="Toggle done" fdprocessedid="8yzick"></button><span class="itxt" contenteditable="true" spellcheck="false">read more books about my stuff</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow" fdprocessedid="rfqkfk">→</button><button class="idel" aria-label="Delete" fdprocessedid="qhap2">×</button></li><li><button class="chk" aria-label="Toggle done" fdprocessedid="xtc7"></button><span class="itxt" contenteditable="true" spellcheck="false">headache hours</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow" fdprocessedid="2rvhqr">→</button><button class="idel" aria-label="Delete" fdprocessedid="zgt3ms">×</button></li><li><button class="chk" aria-label="Toggle done" fdprocessedid="qv24rn"></button><span class="itxt" contenteditable="true" spellcheck="false">check whatsapp at 11am</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow" fdprocessedid="8725n">→</button><button class="idel" aria-label="Delete" fdprocessedid="22vx2">×</button></li><li><button class="chk" aria-label="Toggle done" fdprocessedid="3uv5zr"></button><span class="itxt" contenteditable="true" spellcheck="false">check whatsapp at 3pm</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow" fdprocessedid="ae2k2">→</button><button class="idel" aria-label="Delete" fdprocessedid="k0wrqn">×</button></li><li><button class="chk" aria-label="Toggle done" fdprocessedid="swf97p"></button><span class="itxt" contenteditable="true" spellcheck="false">meditate at any time</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow" fdprocessedid="rlloyk">→</button><button class="idel" aria-label="Delete" fdprocessedid="jov4q1">×</button></li><li class="done"><button class="chk" aria-label="Toggle done" fdprocessedid="qir27"></button><span class="itxt" contenteditable="true" spellcheck="false">journal 15 minutes</span><button class="idel" aria-label="Delete" fdprocessedid="im4i1">×</button></li><li class="done"><button class="chk" aria-label="Toggle done" fdprocessedid="dmwri8"></button><span class="itxt" contenteditable="true" spellcheck="false">think about your future</span><button class="idel" aria-label="Delete" fdprocessedid="qo38qn">×</button></li><li class="done"><button class="chk" aria-label="Toggle done" fdprocessedid="mudhmk"></button><span class="itxt" contenteditable="true" spellcheck="false">pentesting bootcamps comptia, ceh, other recognized certificates</span><button class="idel" aria-label="Delete" fdprocessedid="nnd9t">×</button></li><li class="done"><button class="chk" aria-label="Toggle done" fdprocessedid="q4of4"></button><span class="itxt" contenteditable="true" spellcheck="false">order breakfast, lunch, dinner grabfood ask soma</span><button class="idel" aria-label="Delete" fdprocessedid="kt1bv">×</button></li><li><button class="chk" aria-label="Toggle done" fdprocessedid="e98tn7"></button><span class="itxt" contenteditable="true" spellcheck="false">skincare</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow" fdprocessedid="nqcek">→</button><button class="idel" aria-label="Delete" fdprocessedid="pxhvcd">×</button></li><li><button class="chk" aria-label="Toggle done" fdprocessedid="030jpf"></button><span class="itxt" contenteditable="true" spellcheck="false">shopping</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow" fdprocessedid="aec9xj">→</button><button class="idel" aria-label="Delete" fdprocessedid="9kae7b">×</button></li><li><button class="chk" aria-label="Toggle done" fdprocessedid="1vtqcu"></button><span class="itxt" contenteditable="true" spellcheck="false">breakfast</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow" fdprocessedid="khptp">→</button><button class="idel" aria-label="Delete" fdprocessedid="hklnvq">×</button></li><li><button class="chk" aria-label="Toggle done" fdprocessedid="bfgnwc"></button><span class="itxt" contenteditable="true" spellcheck="false">buy headphone</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow" fdprocessedid="uko4jb">→</button><button class="idel" aria-label="Delete" fdprocessedid="lb1c38">×</button></li><li class="done"><button class="chk" aria-label="Toggle done" fdprocessedid="ypy3rh"></button><span class="itxt" contenteditable="true" spellcheck="false">check about turkish schedule what to do on thursday</span><button class="idel" aria-label="Delete" fdprocessedid="q7cdz8">×</button></li><li><button class="chk" aria-label="Toggle done" fdprocessedid="lovug"></button><span class="itxt" contenteditable="true" spellcheck="false">my charisma</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow" fdprocessedid="zat1ms">→</button><button class="idel" aria-label="Delete" fdprocessedid="pdpk0g">×</button></li><li class="done"><button class="chk" aria-label="Toggle done" fdprocessedid="mgg4hc"></button><span class="itxt" contenteditable="true" spellcheck="false">email veeramohan@upm.edu.my for MGM3180 meeting method and groupchat infos</span><button class="idel" aria-label="Delete" fdprocessedid="gj7h8x">×</button></li><li class="done"><button class="chk" aria-label="Toggle done" fdprocessedid="0dk0r"></button><span class="itxt" contenteditable="true" spellcheck="false">MGM3180 2-5pm</span><button class="idel" aria-label="Delete" fdprocessedid="xrhri9">×</button></li><li class="done"><button class="chk" aria-label="Toggle done" fdprocessedid="gl9yp"></button><span class="itxt" contenteditable="true" spellcheck="false">study block MGM3180</span><button class="idel" aria-label="Delete" fdprocessedid="t3ttei">×</button></li><li class="done"><button class="chk" aria-label="Toggle done" fdprocessedid="jrwze"></button><span class="itxt" contenteditable="true" spellcheck="false">message SOL wellness when is the start of therapy date</span><button class="idel" aria-label="Delete" fdprocessedid="nifltb">×</button></li></ul>
-        <div class="addrow"><input id="taskAdd" placeholder="+ task, press enter" autocomplete="off" fdprocessedid="041feri"></div>
-        <button class="linkish carry" id="carryBtn" fdprocessedid="l1zck">unfinished → tomorrow</button>
+        <ul class="caplist" id="taskList"></ul>
+        <div class="addrow"><input id="taskAdd" placeholder="+ task, press enter" autocomplete="off"></div>
+        <button class="linkish carry hidden" id="carryBtn">unfinished → tomorrow</button>
       </div>
       <div class="capcol">
         <div class="sect">IDEAS</div>
-        <ul class="caplist" id="ideaList"><li><span class="dash">–</span><span class="itxt" contenteditable="true" spellcheck="false">check again when doctor's appointment is (go to PKU first!)</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow" fdprocessedid="af0xib">→</button><button class="idel" aria-label="Delete" fdprocessedid="gn4sy">×</button></li><li><span class="dash">–</span><span class="itxt" contenteditable="true" spellcheck="false">mom and sister will come check when will they come</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow" fdprocessedid="9xue5o">→</button><button class="idel" aria-label="Delete" fdprocessedid="x9dd6f">×</button></li><li><span class="dash">–</span><span class="itxt" contenteditable="true" spellcheck="false">i want to continue learn python</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow" fdprocessedid="dgwaac">→</button><button class="idel" aria-label="Delete" fdprocessedid="7wmr4">×</button></li><li><span class="dash">–</span><span class="itxt" contenteditable="true" spellcheck="false">i want to learn java</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow" fdprocessedid="tak1a">→</button><button class="idel" aria-label="Delete" fdprocessedid="6155e">×</button></li><li><span class="dash">–</span><span class="itxt" contenteditable="true" spellcheck="false">i want to practice american english for ielts too</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow" fdprocessedid="fo9mpd">→</button><button class="idel" aria-label="Delete" fdprocessedid="mk4ep">×</button></li><li><span class="dash">–</span><span class="itxt" contenteditable="true" spellcheck="false">i want to learn to be a ceo</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow" fdprocessedid="2qlxi2">→</button><button class="idel" aria-label="Delete" fdprocessedid="mq761d">×</button></li><li><span class="dash">–</span><span class="itxt" contenteditable="true" spellcheck="false">i want to be medea</span><button class="imove" title="Move to tomorrow" aria-label="Move to tomorrow" fdprocessedid="vi11ve">→</button><button class="idel" aria-label="Delete" fdprocessedid="1ngyud">×</button></li></ul>
-        <div class="addrow"><input id="ideaAdd" placeholder="+ idea, press enter" autocomplete="off" fdprocessedid="1zzinl"></div>
-        <button class="linkish carry" id="carryIdeasBtn" fdprocessedid="f1hcus">all → tomorrow</button>
+        <ul class="caplist" id="ideaList"></ul>
+        <div class="addrow"><input id="ideaAdd" placeholder="+ idea, press enter" autocomplete="off"></div>
+        <button class="linkish carry hidden" id="carryIdeasBtn">all → tomorrow</button>
       </div>
     </div>
 
     <div class="shutdown" id="shutdownRow">
-      <button class="sdbox" id="sdBox" aria-label="Toggle shutdown complete" fdprocessedid="9nnej5"></button>
+      <button class="sdbox" id="sdBox" aria-label="Toggle shutdown complete"></button>
       <div>
         <div class="sdlabel">SHUTDOWN COMPLETE</div>
         <div class="sdtime" id="sdTime">end-of-day ritual — check when the day is closed</div>
@@ -412,7 +415,7 @@
   <section class="page single">
     <div class="page-head">
       <div class="dow">WEEKLY PLAN</div>
-      <div class="fulldate" id="weekLabel">27 JUL – 2 AUG · 2026-W31</div>
+      <div class="fulldate" id="weekLabel">—</div>
       <div class="flex"></div>
       <div class="headtag">THINK BEFORE YOU BLOCK</div>
     </div>
@@ -430,7 +433,7 @@
       <li><b>Capture.</b> Mid-block tasks and ideas go to the right page so you can return to focus instead of switching.</li>
       <li><b>Shut down.</b> Mark your metrics, glance at tomorrow, check the box. The day is closed.</li>
     </ol>
-    <button class="tbtn" id="howClose" fdprocessedid="urkk3h">GOT IT</button>
+    <button class="tbtn" id="howClose">GOT IT</button>
   </div>
 </div>
 
@@ -449,7 +452,50 @@ try{hasStore=!!(window.storage&&window.storage.get)}catch(e){}
 if(!hasStore){
   try{localStorage.setItem('tbp:test','1');localStorage.removeItem('tbp:test');hasLocal=true}catch(e){}
 }
-function sGet(k){
+
+/* ---------- optional Firebase sync (fill in firebaseConfig below to enable) ---------- */
+var firebaseConfig = {
+  apiKey: "AIzaSyC_hEZZNZ07hyCWLb68DkThJaCB-BNcYyY",
+  authDomain: "time-block-planner-fdec4.firebaseapp.com",
+  projectId: "time-block-planner-fdec4",
+  storageBucket: "time-block-planner-fdec4.firebasestorage.app",
+  messagingSenderId: "259383088901",
+  appId: "1:259383088901:web:944652fae9eee0217f496c"
+};
+var fbReady=false, fbDb=null;
+var SYNC_KEY='tbp:synccode';
+var syncCode='';
+try{syncCode=localStorage.getItem(SYNC_KEY)||''}catch(e){}
+try{
+  if(window.firebase && firebaseConfig.apiKey && firebaseConfig.apiKey.indexOf('PASTE')===-1){
+    firebase.initializeApp(firebaseConfig);
+    fbDb=firebase.firestore();
+    fbReady=true;
+  }
+}catch(e){fbReady=false}
+
+function fbCol(){return fbDb.collection('planners').doc(syncCode).collection('entries')}
+function fbGet(k){
+  return fbCol().doc(k).get().then(function(snap){
+    if(!snap.exists) return null;
+    var d=snap.data();
+    try{return d.value?JSON.parse(d.value):null}catch(e){return null}
+  });
+}
+function fbSet(k,v){
+  return fbCol().doc(k).set({value:JSON.stringify(v),updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
+}
+function fbListAll(){
+  return fbCol().get().then(function(snap){
+    var out={};
+    snap.forEach(function(doc){
+      try{out[doc.id]=JSON.parse(doc.data().value)}catch(e){}
+    });
+    return out;
+  });
+}
+
+function sGetFallback(k){
   if(hasStore) return window.storage.get(k).then(function(r){
     try{return r&&r.value?JSON.parse(r.value):null}catch(e){return null}
   }).catch(function(){return null});
@@ -459,15 +505,38 @@ function sGet(k){
   }
   return Promise.resolve(mem.hasOwnProperty(k)?mem[k]:null);
 }
-function sSet(k,v){
-  mem[k]=v;
+function sSetFallback(k,v){
   if(hasStore) return window.storage.set(k,JSON.stringify(v)).catch(function(){});
   if(hasLocal){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
   return Promise.resolve();
 }
+function sGet(k){
+  if(fbReady&&syncCode) return fbGet(k).catch(function(){return sGetFallback(k)});
+  return sGetFallback(k);
+}
+function sSet(k,v){
+  mem[k]=v;
+  if(fbReady&&syncCode) return fbSet(k,v).catch(function(){return sSetFallback(k,v)});
+  return sSetFallback(k,v);
+}
+function promptSyncCode(first){
+  var msg=first
+    ? 'Set a sync code — enter the SAME code on every device you want to share this planner with (letters/numbers, made-up is fine, keep it private):'
+    : 'Your current sync code (enter the SAME code on every device to keep them in sync):';
+  var v=window.prompt(msg,syncCode||'');
+  if(v===null) return;
+  v=v.trim();
+  if(!v) return;
+  syncCode=v;
+  try{localStorage.setItem(SYNC_KEY,syncCode)}catch(e){}
+  paintMode();
+  loadDay();loadWeek();
+}
 function paintMode(){
   var el=document.getElementById('storeMode');if(!el)return;
-  if(hasStore){el.textContent='✓ synced to your claude account';el.className='modetag ok'}
+  if(fbReady&&syncCode){el.textContent='✓ synced everywhere · code set';el.className='modetag ok'}
+  else if(fbReady&&!syncCode){el.textContent='sync ready — set a code';el.className='modetag'}
+  else if(hasStore){el.textContent='✓ synced to your claude account';el.className='modetag ok'}
   else if(hasLocal){el.textContent='saved on this device only';el.className='modetag'}
   else{el.textContent='⚠ not saving — will vanish on close';el.className='modetag bad'}
 }
@@ -820,6 +889,9 @@ $('#clearBtn').addEventListener('click',function(){
 /* ---------- backup / restore ---------- */
 function collectAll(){
   var out={};
+  if(fbReady&&syncCode){
+    return fbListAll().catch(function(){return out});
+  }
   if(hasStore){
     return window.storage.list('tbp:').then(function(r){
       var keys=(r&&r.keys)||[];
@@ -868,6 +940,7 @@ $('#importFile').addEventListener('change',function(){
   r.readAsText(f);
 });
 $('#howBtn').addEventListener('click',function(){$('#howto').classList.remove('hidden')});
+$('#syncBtn').addEventListener('click',function(){promptSyncCode(!syncCode)});
 $('#howClose').addEventListener('click',function(){$('#howto').classList.add('hidden')});
 $('#howto').addEventListener('click',function(e){if(e.target===this)this.classList.add('hidden')});
 
@@ -893,257 +966,11 @@ sGet('tbp:prefs').then(function(p){
   sGet('tbp:seen').then(function(seen){
     if(!seen){$('#howto').classList.remove('hidden');sSet('tbp:seen',1)}
   });
+  if(fbReady&&!syncCode){
+    setTimeout(function(){promptSyncCode(true)},400);
+  }
 });
 })();
 </script>
-
-
-<div id="screenity-ui"><div class="screenity-shadow-dom"><div><div class="screenity-scrollbar"></div><div class="screenity-scrollbar"></div></div><style type="text/css">
-			#screenity-ui, #screenity-ui div {
-				background-color: unset;
-				padding: unset;
-				width: unset;
-				box-shadow: unset;
-				display: unset;
-				margin: unset;
-				border-radius: unset;
-			}
-			.screenity-outline {
-				position: absolute;
-				z-index: 99999999999;
-				border: 2px solid #0F877B;
-				outline-offset: -2px;
-				pointer-events: none;
-				border-radius: 5px!important;
-			}
-		.screenity-blur {
-			filter: blur(10px)!important;
-		}
-			.screenity-shadow-dom * {
-				transition: unset;
-			}
-			.screenity-shadow-dom .TooltipContent {
-  border-radius: 8px!important;
-	background-color: #29292F!important;
-  padding: 10px 15px!important;
-  font-size: 12px;
-	margin-bottom: 10px!important;
-	bottom: 100px;
-  line-height: 1;
-	font-family: 'Inter-Medium', sans-serif;
-	z-index: 99999999!important;
-  color: #FFF;
-  box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px!important;
-  user-select: none;
-	transition: opacity 0.3 ease-in-out;
-  will-change: transform, opacity;
-	animation-duration: 400ms;
-  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform, opacity;
-}
-
-.screenity-shadow-dom .hide-tooltip {
-	display: none!important;
-}
-
-.screenity-shadow-dom .tooltip-tall {
-	margin-bottom: 20px;
-}
-
-.screenity-shadow-dom .tooltip-small {
-	margin-bottom: 5px;
-}
-
-.screenity-shadow-dom .TooltipContent[data-state='delayed-open'][data-side='top'] {
-	animation-name: slideDownAndFade;
-}
-.screenity-shadow-dom .TooltipContent[data-state='delayed-open'][data-side='right'] {
-  animation-name: slideLeftAndFade;
-}
-.screenity-shadow-dom.TooltipContent[data-state='delayed-open'][data-side='bottom'] {
-  animation-name: slideUpAndFade;
-}
-.screenity-shadow-dom.TooltipContent[data-state='delayed-open'][data-side='left'] {
-  animation-name: slideRightAndFade;
-}
-
-@keyframes slideUpAndFade {
-  from {
-    opacity: 0;
-    transform: translateY(2px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideRightAndFade {
-  from {
-    opacity: 0;
-    transform: translateX(-2px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideDownAndFade {
-  from {
-    opacity: 0;
-    transform: translateY(-2px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideLeftAndFade {
-  from {
-    opacity: 0;
-    transform: translateX(2px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-#screenity-ui [data-radix-popper-content-wrapper] { z-index: 999999999999!important; } 
-
-.screenity-shadow-dom .CanvasContainer {
-	position: fixed;
-	pointer-events: all!important;
-	top: 0px!important;
-	left: 0px!important;
-	z-index: 99999999999!important;
-}
-.screenity-shadow-dom .canvas {
-	position: fixed;
-	top: 0px!important;
-	left: 0px!important;
-	z-index: 99999999999!important;
-	background: transparent!important;
-}
-.screenity-shadow-dom .canvas-container {
-	top: 0px!important;
-	left: 0px!important;
-	z-index: 99999999999;
-	position: fixed!important;
-	background: transparent!important;
-}
-
-.ScreenityDropdownMenuContent {
-	z-index: 99999999999!important;
-  min-width: 200px;
-  background-color: white;
-  margin-top: 4px;
-  margin-right: 8px;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  border-radius: 15px;
-  z-index: 99999;
-  font-family: 'Inter-Medium', sans-serif;
-  color: #29292F;
-  box-shadow: 0px 10px 38px -10px rgba(22, 23, 24, 0.35),
-    0px 10px 20px -15px rgba(22, 23, 24, 0.2);
-  animation-duration: 400ms;
-  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform, opacity;
-}
-.ScreenityDropdownMenuContent[data-side="top"] {
-  animation-name: slideDownAndFade;
-}
-.ScreenityDropdownMenuContent[data-side="right"] {
-  animation-name: slideLeftAndFade;
-}
-.ScreenityDropdownMenuContent[data-side="bottom"] {
-  animation-name: slideUpAndFade;
-}
-.ScreenityDropdownMenuContent[data-side="left"] {
-  animation-name: slideRightAndFade;
-}
-.ScreenityItemIndicator {
-  position: absolute;
-  right: 12px; 
-  width: 18px;
-  height: 18px;
-  background: #0F877B;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-.ScreenityDropdownMenuItem,
-.ScreenityDropdownMenuRadioItem {
-  font-size: 14px;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  height: 40px;
-  padding: 0 5px;
-  position: relative;
-  padding-left: 22px;
-  padding-right: 22px;
-  user-select: none;
-  outline: none;
-}
-.ScreenityDropdownMenuItem:hover {
-    background-color: #F6F7FB !important;
-    cursor: pointer;
-}
-.ScreenityDropdownMenuItem[data-disabled] {
-  color: #6E7684; !important;
-  cursor: not-allowed;
-  background-color: #F6F7FB !important;
-}
-
-
-
-@keyframes slideUpAndFade {
-  from {
-    opacity: 0;
-    transform: translateY(2px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideRightAndFade {
-  from {
-    opacity: 0;
-    transform: translateX(-2px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideDownAndFade {
-  from {
-    opacity: 0;
-    transform: translateY(-2px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideLeftAndFade {
-  from {
-    opacity: 0;
-    transform: translateX(2px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-</style></div></div><span id="PING_IFRAME_FORM_DETECTION" style="display: none;"></span></body></html>
+</body>
+</html>
